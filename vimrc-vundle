@@ -1,0 +1,35 @@
+set nocompatible
+set encoding=utf8
+set t_Co=256
+filetype off
+
+" vundle stuff
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'valloric/youcompleteme'
+Plugin 'tpope/vim-fugitive'
+call vundle#end()
+filetype plugin indent on
+" end vundle
+
+" youcompleteme
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" vim airline
+let g:airline_exclude_preview = 1
+set laststatus=2
+set noshowmode
+
+" syntax highlighting and line numbering
+syntax on
+set number
+
+" familiar backspace and tab behavior
+set backspace=indent,eol,start
+set tabstop=4 shiftwidth=4 noexpandtab autoindent
+
+" Syntax highlighting rules
+au BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=handlebars
+
