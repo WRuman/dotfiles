@@ -12,6 +12,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-fugitive'
 Plugin 'rust-lang/rust.vim'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'airblade/vim-gitgutter'
 call vundle#end()
 filetype plugin indent on
 " end vundle
@@ -23,6 +25,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:airline_exclude_preview = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline_theme = 'base16_colors'
 set laststatus=2
 set noshowmode
 
@@ -30,9 +33,29 @@ set noshowmode
 syntax on
 set number
 
+" windowing behavior
+set splitright
+
+" syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" syntastic checkers
+let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_rust_checkers=['rustc']
+let g:syntastic_rust_rustc_exe = 'cargo check'
+let g:syntastic_rust_rustc_fname = ''
+let g:syntastic_rust_rustc_args = '--'
+
 " familiar backspace and tab behavior
 set backspace=indent,eol,start
 set tabstop=4 shiftwidth=4 noexpandtab autoindent
+
+" searching
+set ignorecase
+set smartcase
 
 " Syntax highlighting rules
 au BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=handlebars
