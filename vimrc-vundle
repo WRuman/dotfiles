@@ -1,6 +1,8 @@
 set nocompatible
 set encoding=utf8
 set t_Co=256
+set ttimeout
+set ttimeoutlen=100
 filetype off
 
 " vundle stuff
@@ -14,6 +16,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'rust-lang/rust.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-sleuth'
 call vundle#end()
 filetype plugin indent on
 " end vundle
@@ -51,7 +54,7 @@ let g:syntastic_rust_rustc_args = '--'
 
 " familiar backspace and tab behavior
 set backspace=indent,eol,start
-set tabstop=4 shiftwidth=4 noexpandtab autoindent
+set tabstop=2 shiftwidth=2 noexpandtab autoindent
 
 " searching
 set ignorecase
