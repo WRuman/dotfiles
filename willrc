@@ -1,0 +1,40 @@
+alias rgrep='grep -Rn --exclude-dir={cache,vendor,bower_components}'
+alias tml='tmux list-sessions'
+alias tmx='tmux new-session -A -s'
+alias em='emacsclient -create-frame --alternate-editor=""'
+
+# GIT CLI #
+source ~/.bash_color_aliases
+
+# SET THE FOLLOWING FLAGS TO 0 TO TURN OFF THAT FEATURE
+# This will show the clean/dirty state (* for dirty branch, + for un-added files) to the branch info.
+export GIT_PS1_SHOWDIRTYSTATE=1
+
+# This will color the branch info (red = dirty, green = clean, etc.).
+export GIT_PS1_SHOWCOLORHINTS=1
+
+# This will display a '$' if there are any stashed files.
+export GIT_PS1_SHOWSTASHSTATE=1
+
+if [ -f ~/.git-prompt.sh ]; then
+  . ~/.git-prompt.sh
+fi
+
+function colorize_prompt {
+	local __user_and_host="\[${BCyan}\]\u\[${White}\]@\[${BGreen}\]\h"
+	if [ "$EUID" -eq 0 ]
+	  then __user_and_host="\[${BRed}\]\u\[${White}\]@\[${BGreen}\]\h"
+	fi
+	local __cur_location="\[${Blue}\]\w"
+	local __git_branch_color="\[${BYellow}\]"
+	local __git_branch='`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /`'
+	#local __prompt_tail="\[\033[35m\]\[${BYellow}\]\nλ"
+	local __prompt_tail="\[\033[35m\]\[${BWhite}\]\n👻"
+	local __last_color="\[\033[00m\]"
+	export PS1="$__user_and_host $__cur_location $__git_branch_color$__git_branch$__prompt_tail$__last_color "
+}
+colorize_prompt
+
+function rpn() {
+  dc -e "$1 p"
+}
