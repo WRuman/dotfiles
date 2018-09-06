@@ -1,0 +1,11 @@
+;;; The following lines added by ql:add-to-init-file:
+(let ((quicklisp-init (merge-pathnames
+                       (make-pathname
+                        :type "lisp"
+                        :name "setup"
+                        :directory '(:relative ".local" "lib" "quicklisp"))
+                       (user-homedir-pathname)))
+      )
+  (print quicklisp-init)
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
